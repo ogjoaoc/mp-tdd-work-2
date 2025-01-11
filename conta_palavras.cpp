@@ -20,5 +20,8 @@
  */ 
 
 std::vector<std::pair<std::string,int>> ContaPalavras(std::string texto) {
+    if(texto == "") {
+        return {};
+    }
     return {{"-1", 0}};
 }
