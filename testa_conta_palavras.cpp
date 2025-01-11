@@ -31,4 +31,7 @@ TEST_CASE("Teste 2: Separação de palavras do texto.") {
 
 TEST_CASE("Teste 3: Teste especial para inserção de palavra ao HashMap.") {
   std::string palavra = "opa";
+  HashMap* contador_auxiliar = build();
+  add(contador_auxiliar, palavra.c_str(), 1);
+  REQUIRE(contador_auxiliar->tamanho == 1);
 }
