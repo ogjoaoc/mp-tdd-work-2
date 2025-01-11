@@ -25,4 +25,6 @@ TEST_CASE("Teste 2: Separação de palavras do texto.") {
     {"estar"},
     {"separadas"}
   };
+  auto resultado = separaPalavras(texto);
+  REQUIRE(resultado == esperado);
 }

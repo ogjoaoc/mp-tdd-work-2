@@ -39,6 +39,10 @@ HashMap* build() {
     return hashMap;
 }
 
+std::vector<std::string> separaPalavras(std::string texto) {
+    return {};
+}
+
 bool checaTextoVazio(std::string texto) {
     if(texto == "") return true;
     return false;
