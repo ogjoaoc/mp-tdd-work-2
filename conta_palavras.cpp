@@ -25,22 +25,11 @@
  * 
  */
 
-struct Par {
-  char* chave;
-  int valor;
-  Par* prox;
-};
-
-struct HashMap {
-  Par** lista;
-  unsigned int capacidade;
-  unsigned int tamanho;
-};
 
 HashMap* build() {
   HashMap* hashMap = (HashMap*) malloc(sizeof(HashMap));
-  hashMap->capacidade = 1000; // máximo de palavras
-  hashMap->tamanho = 0; // quantas palavras até agora
+  hashMap->capacidade = 1009; // máximo de palavras
+  hashMap->tamanho = 0; // quantas palavras diferentes até agora
   hashMap->lista = (Par**) calloc(hashMap->capacidade, sizeof(Par*));
   return hashMap;
 }
@@ -52,6 +41,13 @@ unsigned encode(HashMap* hashMap, const char* chave) {
     chave++;
   }
   return code % hashMap->capacidade;
+}
+
+int get(HashMap* hashMap, const char* chave) {
+  return -1; 
+}
+
+void add(HashMap* hashMap, const char* chave, int num) {
 }
 
 std::vector<std::string> separaPalavras(std::string texto) {

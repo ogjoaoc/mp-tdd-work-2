@@ -28,3 +28,7 @@ TEST_CASE("Teste 2: Separação de palavras do texto.") {
   auto resultado = separaPalavras(texto);
   REQUIRE(resultado == esperado);
 }
+
+TEST_CASE("Teste 3: Teste especial para inserção de palavra ao HashMap.") {
+  std::string palavra = "opa";
+}
