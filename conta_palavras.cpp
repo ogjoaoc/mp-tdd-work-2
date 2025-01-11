@@ -31,6 +31,14 @@ struct HashMap {
     unsigned int tamanho; 
 };
 
+HashMap* build() {
+    HashMap* hashMap = (HashMap*)malloc(sizeof(HashMap));
+    hashMap->capacidade = 1000; // máximo de palavras
+    hashMap->tamanho = 0; // quantas palavras até agora
+    hashMap->lista = (Par**)calloc(hashMap->capacidade, sizeof(Par*));
+    return hashMap;
+}
+
 bool checaTextoVazio(std::string texto) {
     if(texto == "") return true;
     return false;
