@@ -20,5 +20,5 @@
  */ 
 
 std::vector<std::pair<std::string,int>> ContaPalavras(std::string texto) {
-
+    return {{"-1", 0}};
 }
