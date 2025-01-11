@@ -44,10 +44,35 @@ unsigned encode(HashMap* hashMap, const char* chave) {
 }
 
 int get(HashMap* hashMap, const char* chave) {
-  return -1; 
+  // dado determinado índice, calculado na função hash, 
+  // encontra nó(Par) inicial referente aquele índice, e faz a busca pela chave.
+  unsigned index = encode(hashMap, chave);
+  Par* atual = hashMap->lista[index];
+  while (atual) {
+    if (strcmp(atual->chave, chave) == 0) {
+      return atual->valor;
+    }
+    atual = atual->prox;
+  }
+  return -1;
 }
 
 void add(HashMap* hashMap, const char* chave, int num) {
+  unsigned index = encode(hashMap, chave);
+  Par* atual = hashMap->lista[index];
+  while (atual) {
+    if (strcmp(atual->chave, chave) == 0) {
+      atual->valor = num;
+      return;
+    }
+    atual = atual->prox;
+  }
+  Par* novaChaveAuxiliar = (Par*)malloc(sizeof(Par));
+  novaChaveAuxiliar->chave = strdup(chave);
+  novaChaveAuxiliar->valor = num;
+  novaChaveAuxiliar->prox = hashMap->lista[index];
+  hashMap->lista[index] = novaChaveAuxiliar;
+  hashMap->tamanho++;
 }
 
 std::vector<std::string> separaPalavras(std::string texto) {
