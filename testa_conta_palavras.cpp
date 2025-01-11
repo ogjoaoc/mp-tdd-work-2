@@ -13,5 +13,7 @@
 #include <iostream>
 
 TEST_CASE("Teste 1: Texto vazio.") {
-
+  std::string texto = "";
+  auto resultado = ContaPalavras(texto);
+  REQUIRE(resultado.empty());
 }
