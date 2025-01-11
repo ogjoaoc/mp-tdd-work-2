@@ -19,9 +19,14 @@
  * 
  */ 
 
+bool checaTextoVazio(std::string texto) {
+    if(texto == "") return true;
+    return false;
+}
+
 std::vector<std::pair<std::string,int>> ContaPalavras(std::string texto) {
-    if(texto == "") {
-        return {};
-    }
+    if(checaTextoVazio(texto)) {
+        return std::vector<std::pair<std::string,int>> ();
+    } 
     return {{"-1", 0}};
 }
