@@ -19,6 +19,18 @@
  * 
  */ 
 
+struct Par {
+    char* chave;
+    int valor;
+    Par* prox;
+};
+
+struct HashMap {
+    Par** lista;
+    unsigned int capacidade; 
+    unsigned int tamanho; 
+};
+
 bool checaTextoVazio(std::string texto) {
     if(texto == "") return true;
     return false;
