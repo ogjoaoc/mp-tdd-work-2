@@ -17,3 +17,12 @@ TEST_CASE("Teste 1: Texto vazio.") {
   auto resultado = ContaPalavras(texto);
   REQUIRE(resultado.empty());
 }
+
+TEST_CASE("Teste 2: Separação de palavras do texto.") {
+  std::string texto = "devem estar separadas";
+  std::vector<std::string> esperado = {
+    {"devem"},
+    {"estar"},
+    {"separadas"}
+  };
+}
