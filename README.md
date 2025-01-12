@@ -26,7 +26,7 @@ O desenvolvimento foi realizado utilizando a metodologia de Desenvolvimento Orie
    ```bash
    cd mp-tdd-work-2
    ```
-3. **Compile o códio utilizando o makefile:**
+3. **Compile o código utilizando o makefile:**
    ```bash
    make all
    ```
