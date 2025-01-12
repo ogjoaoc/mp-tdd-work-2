@@ -68,5 +68,6 @@ TEST_CASE("Teste 7: Texto com pontuação e acentuação (ordem independente).")
     {"isso", 1},
     {"é", 1}
   };
+  REQUIRE(resultado == esperado);
 }
 
