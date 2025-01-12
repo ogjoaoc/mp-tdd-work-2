@@ -75,13 +75,13 @@ TEST_CASE("Teste 8: Texto com pontuação e acentuação (ordem dependente).") {
   std::string texto = "Este texto é o texto que será utilizado.";
   auto resultado = ContaPalavras(texto);
   std::vector<std::pair<std::string, int>> esperado = {
-        {"é", 1},
-        {"Este", 1},
-        {"o", 1},
-        {"que", 1},
-        {"será", 1},
-        {"texto", 2},
-        {"utilizado", 1}
-    };
+    {"é", 1},
+    {"Este", 1},
+    {"o", 1},
+    {"que", 1},
+    {"será", 1},
+    {"texto", 2},
+    {"utilizado", 1}
+  };
   REQUIRE(resultado == esperado);
 }

@@ -27,37 +27,44 @@
  * 
  */
 
+bool compararPares(const std::pair<std::string, int>& a, const std::pair<std::string, int>& b) {
+    return normalizarPalavra(a.first, true) < normalizarPalavra(b.first, true);
+}
 
-
-void merge(int l, int r, std::vector<std::pair<std::string, int>>& v) {
-  int mid = l + (r - l) / 2, ptra = l, ptrb = mid + 1;
+void merge(int esquerda, int direita, std::vector<std::pair<std::string, int>>& palavrasContadas) {
+  int meio = esquerda + (direita - esquerda) / 2;
+  int ponteiro_esquerda = esquerda, ponteiro_direita = meio + 1;
   std::vector<std::pair<std::string, int>> auxiliar;
-  while (ptra <= mid && ptrb <= r) {
-    if (normalizarPalavra(v[ptra].first, true) > normalizarPalavra(v[ptrb].first, true)) {
-      auxiliar.push_back(v[ptrb++]);
+  while (ponteiro_esquerda <= meio && ponteiro_direita <= direita) {
+    if (compararPares(palavrasContadas[ponteiro_direita], palavrasContadas[ponteiro_esquerda])) {
+      auxiliar.push_back(palavrasContadas[ponteiro_direita++]);
     } else {
-      auxiliar.push_back(v[ptra++]);
+      auxiliar.push_back(palavrasContadas[ponteiro_esquerda++]);
     }
   }
-  while (ptra <= mid) {
-    auxiliar.push_back(v[ptra++]);
+  while (ponteiro_esquerda <= meio) {
+    auxiliar.push_back(palavrasContadas[ponteiro_esquerda++]);
   }
-  while (ptrb <= r) {
-    auxiliar.push_back(v[ptrb++]);
+  while (ponteiro_direita <= direita) {
+    auxiliar.push_back(palavrasContadas[ponteiro_direita++]);
   }
   for (int i = 0; i < (int)auxiliar.size(); i++) {
-    v[i + l] = auxiliar[i];
-  } 
-}
-
-void mergeSort(int l, int r, std::vector<std::pair<std::string, int>>& v) {
-  if(l < r) {
-    int mid = l + (r - l) / 2;
-    mergeSort(l, mid, v);
-    mergeSort(mid + 1, r, v);
-    merge(l, r, v);
+    palavrasContadas[esquerda + i] = auxiliar[i];
   }
 }
+
+void mergeSort(int esquerda, int direita, std::vector<std::pair<std::string, int>>& palavrasContadas) {
+  if (esquerda < direita) {
+    int meio = esquerda + (direita - esquerda) / 2;
+    mergeSort(esquerda, meio, palavrasContadas);
+    mergeSort(meio + 1, direita, palavrasContadas);
+    merge(esquerda, direita, palavrasContadas);
+  }
+}
+
+void ordenaContagem(std::vector<std::pair<std::string, int>>& palavrasContadas) {
+  mergeSort(0, (int)palavrasContadas.size() - 1, palavrasContadas);
+} 
 
 HashMap* build() {
   HashMap* hashMap = (HashMap*) malloc(sizeof(HashMap));
@@ -147,7 +154,7 @@ std::string normalizarPalavra(std::string palavra, bool converter_para_lowercase
     {"ú", "u"}, {"ù", "u"}, {"û", "u"}, {"ü", "u"}, {"ç", "c"}, 
     {"Á", "A"}, {"À", "A"}, {"Â", "A"}, {"Ã", "A"}, {"Ä", "A"},
     {"É", "E"}, {"È", "E"}, {"Ê", "E"}, {"Ë", "E"},
-    {"Í", "I"}, {"Ì", "I"}, {"Î", "I"}, {"Ï", "I"},
+    {"Í", "I"}, {"Ì", "I"}, {"Î", "I"}, {"Ï", "I"}, 
     {"Ó", "O"}, {"Ò", "O"}, {"Ô", "O"}, {"Õ", "O"}, {"Ö", "O"},
     {"Ú", "U"}, {"Ù", "U"}, {"Û", "U"}, {"Ü", "U"}, {"Ç", "C"}
   };
@@ -197,6 +204,6 @@ std::vector<std::pair<std::string, int>> ContaPalavras(std::string texto) {
     }
   }
   std::vector<std::pair<std::string, int>> palavrasContadas = processaContagem(Contador, lista_de_palavras);
-  mergeSort(0, (int)palavrasContadas.size()-1, palavrasContadas);
+  ordenaContagem(palavrasContadas);
   return palavrasContadas;
 }
