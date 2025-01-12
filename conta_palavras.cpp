@@ -108,6 +108,11 @@ std::vector<std::string> separaPalavras(std::string texto) {
 
 std::string removePontuacao(std::string palavra) {
   std::string resultado;
+  for (char& letra : palavra) {
+    if (!std::ispunct(letra)) {
+      resultado.push_back(letra);
+    }
+  }
   return resultado;
 }
 
