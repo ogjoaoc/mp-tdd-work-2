@@ -29,11 +29,10 @@
 
 
 HashMap* build() {
-  HashMap* hashMap = reinterpret_cast<HashMap*>(malloc(sizeof(HashMap)));
+  HashMap* hashMap = (HashMap*) malloc(sizeof(HashMap));
   hashMap->capacidade = 1009;  // máximo de palavras
-  hashMap->tamanho = 0;  // quantas palavras diferentes até agora
-  hashMap->lista = reinterpret_cast<Par**> (calloc(hashMap
-  ->capacidade, sizeof(Par*)));
+  hashMap->tamanho = 0;   // quantas palavras diferentes até agora
+  hashMap->lista = (Par**) calloc(hashMap->capacidade, sizeof(Par*));
   return hashMap;
 }
 
@@ -70,7 +69,7 @@ void add(HashMap* hashMap, const char* chave, int num) {
     }
     atual = atual->prox;
   }
-  Par* novaChaveAuxiliar = reinterpret_cast<Par*>((sizeof(Par)));
+  Par* novaChaveAuxiliar = (Par*)malloc(sizeof(Par));
   novaChaveAuxiliar->chave = strdup(chave);
   novaChaveAuxiliar->valor = num;
   novaChaveAuxiliar->prox = hashMap->lista[index];
@@ -86,7 +85,7 @@ std::vector<std::pair<std::string, int>> processaContagem(HashMap* contador, std
       int contagem = atual->valor;
       char* chave = atual->chave;
       for (auto &palavra : lista_de_palavras) {
-        if(palavra == chave) {
+        if (palavra == chave) {
           palavrasContadas.push_back({palavra, contagem});    
           break;
         }
@@ -112,15 +111,15 @@ bool checaTextoVazio(std::string texto) {
   return false;
 }
 
-std::vector<std::pair<std::string,int>> ContaPalavras(std::string texto) {
+std::vector<std::pair<std::string, int>> ContaPalavras(std::string texto) {
   if (checaTextoVazio(texto)) {
-    return std::vector<std::pair<std::string,int>> ();
+    return std::vector<std::pair<std::string, int>> ();
   }
   HashMap* Contador = build();
   std::vector<std::string> lista_de_palavras = separaPalavras(texto);
   for (auto palavra_atual : lista_de_palavras) {
     int contagem = get(Contador, palavra_atual.c_str());
-    if(contagem == -1) {
+    if (contagem == -1) {
         add(Contador, palavra_atual.c_str(), 1);
     } else {
         add(Contador, palavra_atual.c_str(), contagem + 1);
