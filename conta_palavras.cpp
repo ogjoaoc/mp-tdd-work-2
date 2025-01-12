@@ -29,6 +29,36 @@
 
 
 
+void merge(int l, int r, std::vector<std::pair<std::string, int>>& v) {
+  int mid = l + (r - l) / 2, ptra = l, ptrb = mid + 1;
+  std::vector<std::pair<std::string, int>> auxiliar;
+  while (ptra <= mid && ptrb <= r) {
+    if (normalizarPalavra(v[ptra].first, true) > normalizarPalavra(v[ptrb].first, true)) {
+      auxiliar.push_back(v[ptrb++]);
+    } else {
+      auxiliar.push_back(v[ptra++]);
+    }
+  }
+  while (ptra <= mid) {
+    auxiliar.push_back(v[ptra++]);
+  }
+  while (ptrb <= r) {
+    auxiliar.push_back(v[ptrb++]);
+  }
+  for (int i = 0; i < (int)auxiliar.size(); i++) {
+    v[i + l] = auxiliar[i];
+  } 
+}
+
+void mergeSort(int l, int r, std::vector<std::pair<std::string, int>>& v) {
+  if(l < r) {
+    int mid = l + (r - l) / 2;
+    mergeSort(l, mid, v);
+    mergeSort(mid + 1, r, v);
+    merge(l, r, v);
+  }
+}
+
 HashMap* build() {
   HashMap* hashMap = (HashMap*) malloc(sizeof(HashMap));
   hashMap->capacidade = 1009;  // máximo de palavras
@@ -108,7 +138,7 @@ std::vector<std::string> separaPalavras(std::string texto) {
   return lista_de_palavras;
 }
 
-std::string normalizarPalavra(const std::string& palavra) {
+std::string normalizarPalavra(std::string palavra, bool converter_para_lowercase) {
   std::vector<std::pair<std::string, std::string>> mapa_de_substituicoes = {
     {"á", "a"}, {"à", "a"}, {"â", "a"}, {"ã", "a"}, {"ä", "a"},
     {"é", "e"}, {"è", "e"}, {"ê", "e"}, {"ë", "e"},
@@ -127,6 +157,11 @@ std::string normalizarPalavra(const std::string& palavra) {
     while ((pos = resultado.find(letra_acentuada, pos)) != std::string::npos) {
       resultado.replace(pos, letra_acentuada.length(), letra_sem_acento);
       pos += letra_sem_acento.length();
+    }
+  }
+  if (converter_para_lowercase) {
+    for(char& letra : resultado) {
+      letra = tolower(letra);
     }
   }
   return resultado;
@@ -162,5 +197,6 @@ std::vector<std::pair<std::string, int>> ContaPalavras(std::string texto) {
     }
   }
   std::vector<std::pair<std::string, int>> palavrasContadas = processaContagem(Contador, lista_de_palavras);
+  mergeSort(0, (int)palavrasContadas.size()-1, palavrasContadas);
   return palavrasContadas;
 }

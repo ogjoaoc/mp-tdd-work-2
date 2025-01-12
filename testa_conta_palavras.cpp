@@ -65,8 +65,8 @@ TEST_CASE("Teste 7: Texto com pontuação e acentuação (ordem independente).")
   std::string texto = "é isso?";
   auto resultado = ContaPalavras(texto);
   std::vector<std::pair<std::string, int>> esperado = {
-    {"isso", 1},
-    {"é", 1}
+    {"é", 1},
+    {"isso", 1}
   };
   REQUIRE(resultado == esperado);
 }
