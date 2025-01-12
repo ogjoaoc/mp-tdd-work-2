@@ -101,6 +101,7 @@ std::vector<std::string> separaPalavras(std::string texto) {
   std::string palavra;
   std::vector <std::string> lista_de_palavras;
   while (iss >> palavra) {
+    palavra = removePontuacao(palavra);
     lista_de_palavras.push_back(palavra);
   }
   return lista_de_palavras;
