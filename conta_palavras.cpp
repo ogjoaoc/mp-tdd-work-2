@@ -12,6 +12,8 @@
 
 #include <cctype>
 
+#include <utility>
+
 /**
  * @file conta_palavras.cpp
  * @brief Implementação de uma função para contar palavras em um texto.
@@ -27,10 +29,11 @@
 
 
 HashMap* build() {
-  HashMap* hashMap = (HashMap*) malloc(sizeof(HashMap));
-  hashMap->capacidade = 1009; // máximo de palavras
-  hashMap->tamanho = 0; // quantas palavras diferentes até agora
-  hashMap->lista = (Par**) calloc(hashMap->capacidade, sizeof(Par*));
+  HashMap* hashMap = reinterpret_cast<HashMap*>(malloc(sizeof(HashMap)));
+  hashMap->capacidade = 1009;  // máximo de palavras
+  hashMap->tamanho = 0;  // quantas palavras diferentes até agora
+  hashMap->lista = reinterpret_cast<Par**> (calloc(hashMap
+  ->capacidade, sizeof(Par*)));
   return hashMap;
 }
 
@@ -44,7 +47,7 @@ unsigned encode(HashMap* hashMap, const char* chave) {
 }
 
 int get(HashMap* hashMap, const char* chave) {
-  // dado determinado índice, calculado na função hash, 
+  // dado determinado índice, calculado na função hash,
   // encontra nó(Par) inicial referente aquele índice, e faz a busca pela chave.
   unsigned index = encode(hashMap, chave);
   Par* atual = hashMap->lista[index];
@@ -67,7 +70,7 @@ void add(HashMap* hashMap, const char* chave, int num) {
     }
     atual = atual->prox;
   }
-  Par* novaChaveAuxiliar = (Par*)malloc(sizeof(Par));
+  Par* novaChaveAuxiliar = reinterpret_cast<Par*>((sizeof(Par)));
   novaChaveAuxiliar->chave = strdup(chave);
   novaChaveAuxiliar->valor = num;
   novaChaveAuxiliar->prox = hashMap->lista[index];
@@ -75,16 +78,16 @@ void add(HashMap* hashMap, const char* chave, int num) {
   hashMap->tamanho++;
 }
 
-std::vector<std::pair<std::string,int>> processaContagem(HashMap* contador, std::vector<std::string> lista_de_palavras) {
+std::vector<std::pair<std::string, int>> processaContagem(HashMap* contador, std::vector<std::string> lista_de_palavras) {
   std::vector<std::pair<std::string, int>> palavrasContadas;
   for (int i = 0; i < (int)contador->capacidade; i++) {
     Par* atual = contador->lista[i];
     while (atual) {
       int contagem = atual->valor;
       char* chave = atual->chave;
-      for(auto &s : lista_de_palavras) {
-        if(s == chave) {
-          palavrasContadas.push_back({s, contagem});    
+      for (auto &palavra : lista_de_palavras) {
+        if(palavra == chave) {
+          palavrasContadas.push_back({palavra, contagem});    
           break;
         }
       }
