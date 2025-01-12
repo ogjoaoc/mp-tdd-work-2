@@ -129,7 +129,6 @@ int get(HashMap* hashMap, const char* chave) {
   return -1;
 }
 
-
 /**
  * @brief Adiciona ou atualiza um par chave-valor no HashMap.
  * @param hashMap Ponteiro para o HashMap.
@@ -207,10 +206,10 @@ std::string normalizarPalavra(std::string palavra, bool converter_para_lowercase
     {"é", "e"}, {"è", "e"}, {"ê", "e"}, {"ë", "e"},
     {"í", "i"}, {"ì", "i"}, {"î", "i"}, {"ï", "i"},
     {"ó", "o"}, {"ò", "o"}, {"ô", "o"}, {"õ", "o"}, {"ö", "o"},
-    {"ú", "u"}, {"ù", "u"}, {"û", "u"}, {"ü", "u"}, {"ç", "c"}, 
+    {"ú", "u"}, {"ù", "u"}, {"û", "u"}, {"ü", "u"}, {"ç", "c"},
     {"Á", "A"}, {"À", "A"}, {"Â", "A"}, {"Ã", "A"}, {"Ä", "A"},
     {"É", "E"}, {"È", "E"}, {"Ê", "E"}, {"Ë", "E"},
-    {"Í", "I"}, {"Ì", "I"}, {"Î", "I"}, {"Ï", "I"}, 
+    {"Í", "I"}, {"Ì", "I"}, {"Î", "I"}, {"Ï", "I"},
     {"Ó", "O"}, {"Ò", "O"}, {"Ô", "O"}, {"Õ", "O"}, {"Ö", "O"},
     {"Ú", "U"}, {"Ù", "U"}, {"Û", "U"}, {"Ü", "U"}, {"Ç", "C"}
   };
@@ -223,7 +222,7 @@ std::string normalizarPalavra(std::string palavra, bool converter_para_lowercase
     }
   }
   if (converter_para_lowercase) {
-    for(char& letra : resultado) {
+    for (char& letra : resultado) {
       letra = tolower(letra);
     }
   }

@@ -1,5 +1,6 @@
 #include <string>
 #include <vector>
+#include <utility>
 
 struct Par {
   char* chave;
@@ -9,7 +10,7 @@ struct Par {
 struct HashMap {
   Par** lista;
   unsigned int capacidade;
-  unsigned int tamanho;
+  unsigned int tamanho; 
 };
 
 bool compararPares(const std::pair<std::string, int>& a, const std::pair<std::string, int>& b);

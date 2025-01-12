@@ -1,0 +1,280 @@
+        -:    0:Source:conta_palavras.cpp
+        -:    1:#include <iostream>
+        -:    2:
+        -:    3:#include <string>
+        -:    4:
+        -:    5:#include <sstream>
+        -:    6:
+        -:    7:#include <vector>
+        -:    8:
+        -:    9:#include <cstdlib>
+        -:   10:
+        -:   11:#include <cstring>
+        -:   12:
+        -:   13:#include <cctype>
+        -:   14:
+        -:   15:#include <utility>
+        -:   16:
+        -:   17:/**
+        -:   18: * @file conta_palavras.cpp
+        -:   19: * @brief Implementação de uma função para contar palavras em um texto.
+        -:   20: * @author João Carlos
+        -:   21: */
+        -:   22:#include "conta_palavras.hpp"
+        -:   23:
+        -:   24:/**
+        -:   25: * @brief Compara duas palavras com base na normalização.
+        -:   26: * @param palavra_a Primeira palavra para comparação.
+        -:   27: * @param palavra_b Segunda palavra para comparação.
+        -:   28: * @return true se a primeira palavra for menor que a segunda após normalização, false caso contrário.
+        -:   29: */
+       15:   30:bool compararPares(const std::pair<std::string, int>& palavra_a, const std::pair<std::string, int>& palavra_b) {
+       15:   31:    return normalizarPalavra(palavra_a.first, true) < normalizarPalavra(palavra_b.first, true);
+        -:   32:}
+        -:   33:
+        -:   34:/**
+        -:   35: * @brief Processo de merge para ordenar palavras contadas.
+        -:   36: * @param esquerda Índice da parte esquerda do vetor a ser ordenado.
+        -:   37: * @param direita Índice da parte direita do vetor a ser ordenado.
+        -:   38: * @param palavrasContadas Vetor de pares (palavra, contagem) a ser ordenado.
+        -:   39: */
+        7:   40:void merge(int esquerda, int direita, std::vector<std::pair<std::string, int>>& palavrasContadas) {
+        7:   41:  int meio = esquerda + (direita - esquerda) / 2;
+        7:   42:  int ponteiro_esquerda = esquerda, ponteiro_direita = meio + 1;
+        7:   43:  std::vector<std::pair<std::string, int>> auxiliar;
+       22:   44:  while (ponteiro_esquerda <= meio && ponteiro_direita <= direita) {
+       15:   45:    if (compararPares(palavrasContadas[ponteiro_direita], palavrasContadas[ponteiro_esquerda])) {
+        5:   46:      auxiliar.push_back(palavrasContadas[ponteiro_direita++]);
+        -:   47:    } else {
+       10:   48:      auxiliar.push_back(palavrasContadas[ponteiro_esquerda++]);
+        -:   49:    }
+        -:   50:  }
+        9:   51:  while (ponteiro_esquerda <= meio) {
+        2:   52:    auxiliar.push_back(palavrasContadas[ponteiro_esquerda++]);
+        -:   53:  }
+       12:   54:  while (ponteiro_direita <= direita) {
+        5:   55:    auxiliar.push_back(palavrasContadas[ponteiro_direita++]);
+        -:   56:  }
+       29:   57:  for (int i = 0; i < (int)auxiliar.size(); i++) {
+       22:   58:    palavrasContadas[esquerda + i] = auxiliar[i];
+        -:   59:  }
+        7:   60:}
+        -:   61:
+        -:   62:/**
+        -:   63: * @brief Ordena o vetor de palavras contadas utilizando o algoritmo MergeSort.
+        -:   64: * @param esquerda Índice inicial do vetor a ser ordenado.
+        -:   65: * @param direita Índice final do vetor a ser ordenado.
+        -:   66: * @param palavrasContadas Vetor de pares (palavra, contagem) a ser ordenado.
+        -:   67: */
+       17:   68:void mergeSort(int esquerda, int direita, std::vector<std::pair<std::string, int>>& palavrasContadas) {
+       17:   69:  if (esquerda < direita) {
+        7:   70:    int meio = esquerda + (direita - esquerda) / 2;
+        7:   71:    mergeSort(esquerda, meio, palavrasContadas);
+        7:   72:    mergeSort(meio + 1, direita, palavrasContadas);
+        7:   73:    merge(esquerda, direita, palavrasContadas);
+        -:   74:  }
+       17:   75:}
+        -:   76:
+        -:   77:/**
+        -:   78: * @brief  Faz ordenação das palavras contadas utilizando mergeSort.
+        -:   79: * @param palavrasContadas Vetor de pares (palavra, contagem) a ser ordenado.
+        -:   80: */
+        3:   81:void ordenaContagem(std::vector<std::pair<std::string, int>>& palavrasContadas) {
+        3:   82:  mergeSort(0, (int)palavrasContadas.size() - 1, palavrasContadas);
+        3:   83:} 
+        -:   84:
+        -:   85:/**
+        -:   86: * @brief Cria e inicializa um novo HashMap.
+        -:   87: * @return Um ponteiro para o novo HashMap alocado.
+        -:   88: */
+        4:   89:HashMap* build() {
+        4:   90:  HashMap* hashMap = (HashMap*) malloc(sizeof(HashMap));
+        4:   91:  hashMap->capacidade = 1009;  // máximo de palavras
+        4:   92:  hashMap->tamanho = 0;   // quantas palavras diferentes até agora
+        4:   93:  hashMap->lista = (Par**) calloc(hashMap->capacidade, sizeof(Par*));
+        4:   94:  return hashMap;
+        -:   95:}
+        -:   96:
+        -:   97:/**
+        -:   98: * @brief Codifica uma chave (palavra) utilizando um algoritmo de hash.
+        -:   99: * @param hashMap Ponteiro para o HashMap onde a chave será armazenada.
+        -:  100: * @param chave A chave (palavra) a ser codificada.
+        -:  101: * @return O código gerado para a chave.
+        -:  102: */
+       24:  103:unsigned encode(HashMap* hashMap, const char* chave) {
+       24:  104:  unsigned code = 0;
+      124:  105:  while (*chave != '\0') {
+      100:  106:    code = *chave + 31 * code;
+      100:  107:    chave++;
+        -:  108:  }
+       24:  109:  return code % hashMap->capacidade;
+        -:  110:}
+        -:  111:
+        -:  112:/**
+        -:  113: * @brief Busca o valor associado a uma chave no HashMap.
+        -:  114: * @param hashMap Ponteiro para o HashMap.
+        -:  115: * @param chave A chave a ser buscada.
+        -:  116: * @return O valor associado à chave ou -1 se não encontrado.
+        -:  117: */
+       12:  118:int get(HashMap* hashMap, const char* chave) {
+        -:  119:  // dado determinado índice, calculado na função hash,
+        -:  120:  // encontra nó(Par) inicial referente aquele índice, e faz a busca pela chave.
+       12:  121:  unsigned index = encode(hashMap, chave);
+       12:  122:  Par* atual = hashMap->lista[index];
+       12:  123:  while (atual) {
+        2:  124:    if (strcmp(atual->chave, chave) == 0) {
+        2:  125:      return atual->valor;
+        -:  126:    }
+    #####:  127:    atual = atual->prox;
+        -:  128:  }
+       10:  129:  return -1;
+        -:  130:}
+        -:  131:
+        -:  132:/**
+        -:  133: * @brief Adiciona ou atualiza um par chave-valor no HashMap.
+        -:  134: * @param hashMap Ponteiro para o HashMap.
+        -:  135: * @param chave A chave a ser adicionada ou atualizada.
+        -:  136: * @param num O valor a ser associado à chave.
+        -:  137: */
+       12:  138:void add(HashMap* hashMap, const char* chave, int num) {
+       12:  139:  unsigned index = encode(hashMap, chave);
+       12:  140:  Par* atual = hashMap->lista[index];
+       12:  141:  while (atual) {
+        1:  142:    if (strcmp(atual->chave, chave) == 0) {
+        1:  143:      atual->valor = num;
+        1:  144:      return;
+        -:  145:    }
+    #####:  146:    atual = atual->prox;
+        -:  147:  }
+       11:  148:  Par* novaChaveAuxiliar = (Par*)malloc(sizeof(Par));
+       11:  149:  novaChaveAuxiliar->chave = strdup(chave);
+       11:  150:  novaChaveAuxiliar->valor = num;
+       11:  151:  novaChaveAuxiliar->prox = hashMap->lista[index];
+       11:  152:  hashMap->lista[index] = novaChaveAuxiliar;
+       11:  153:  hashMap->tamanho++;
+        -:  154:}
+        -:  155:
+        -:  156:/**
+        -:  157: * @brief Processa as contagens das palavras no HashMap e as retorna como um vetor de pares (palavra, contagem).
+        -:  158: * @param contador Ponteiro para o HashMap contendo as contagens das palavras.
+        -:  159: * @param lista_de_palavras Lista de palavras para comparar com o HashMap.
+        -:  160: * @return Um vetor de pares (palavra, contagem) das palavras encontradas.
+        -:  161: */
+        3:  162:std::vector<std::pair<std::string, int>> processaContagem(HashMap* contador, std::vector<std::string> lista_de_palavras) {
+        3:  163:  std::vector<std::pair<std::string, int>> palavrasContadas;
+     3030:  164:  for (int i = 0; i < (int)contador->capacidade; i++) {
+     3027:  165:    Par* atual = contador->lista[i];
+     3037:  166:    while (atual) {
+       10:  167:      int contagem = atual->valor;
+       10:  168:      char* chave = atual->chave;
+       35:  169:      for (auto &palavra : lista_de_palavras) {
+       35:  170:        if (palavra == chave) {
+       10:  171:          palavrasContadas.push_back({palavra, contagem});    
+       10:  172:          break;
+        -:  173:        }
+        -:  174:      }
+       10:  175:      atual = atual->prox;
+        -:  176:    }
+        -:  177:  }
+        3:  178:  return palavrasContadas;
+    =====:  179:}
+        -:  180:
+        -:  181:/**
+        -:  182: * @brief Separa um texto em palavras, removendo pontuações.
+        -:  183: * @param texto O texto de entrada a ser separado em palavras.
+        -:  184: * @return Um vetor de palavras extraídas do texto.
+        -:  185: */
+        4:  186:std::vector<std::string> separaPalavras(std::string texto) {
+        4:  187:  std::istringstream iss(texto);
+        4:  188:  std::string palavra;
+        4:  189:  std::vector <std::string> lista_de_palavras;
+       18:  190:  while (iss >> palavra) {
+       14:  191:    palavra = removePontuacao(palavra);
+       14:  192:    lista_de_palavras.push_back(palavra);
+        -:  193:  }
+        8:  194:  return lista_de_palavras;
+        4:  195:}
+        -:  196:
+        -:  197:/**
+        -:  198: * @brief Normaliza uma palavra, convertendo caracteres acentuados para suas versões sem acento e para minúsculas se indicado.
+        -:  199: * @param palavra A palavra a ser normalizada.
+        -:  200: * @param converter_para_lowercase Indica se a palavra deve ser convertida para minúsculas.
+        -:  201: * @return A palavra normalizada.
+        -:  202: */
+       31:  203:std::string normalizarPalavra(std::string palavra, bool converter_para_lowercase) {
+        -:  204:  std::vector<std::pair<std::string, std::string>> mapa_de_substituicoes = {
+        -:  205:    {"á", "a"}, {"à", "a"}, {"â", "a"}, {"ã", "a"}, {"ä", "a"},
+        -:  206:    {"é", "e"}, {"è", "e"}, {"ê", "e"}, {"ë", "e"},
+        -:  207:    {"í", "i"}, {"ì", "i"}, {"î", "i"}, {"ï", "i"},
+        -:  208:    {"ó", "o"}, {"ò", "o"}, {"ô", "o"}, {"õ", "o"}, {"ö", "o"},
+        -:  209:    {"ú", "u"}, {"ù", "u"}, {"û", "u"}, {"ü", "u"}, {"ç", "c"},
+        -:  210:    {"Á", "A"}, {"À", "A"}, {"Â", "A"}, {"Ã", "A"}, {"Ä", "A"},
+        -:  211:    {"É", "E"}, {"È", "E"}, {"Ê", "E"}, {"Ë", "E"},
+        -:  212:    {"Í", "I"}, {"Ì", "I"}, {"Î", "I"}, {"Ï", "I"},
+        -:  213:    {"Ó", "O"}, {"Ò", "O"}, {"Ô", "O"}, {"Õ", "O"}, {"Ö", "O"},
+        -:  214:    {"Ú", "U"}, {"Ù", "U"}, {"Û", "U"}, {"Ü", "U"}, {"Ç", "C"}
+     1488:  215:  };
+       31:  216:  std::string resultado = palavra;
+     1457:  217:  for (auto & [letra_acentuada, letra_sem_acento]: mapa_de_substituicoes) {
+     1426:  218:    unsigned long long posicao_acento = 0;
+     1438:  219:    while ((posicao_acento = resultado.find(letra_acentuada, posicao_acento)) != std::string::npos) {
+       12:  220:      resultado.replace(posicao_acento, letra_acentuada.length(), letra_sem_acento);
+       12:  221:      posicao_acento += letra_sem_acento.length();
+        -:  222:    }
+        -:  223:  }
+       31:  224:  if (converter_para_lowercase) {
+      140:  225:    for (char& letra : resultado) {
+      110:  226:      letra = tolower(letra);
+        -:  227:    }
+        -:  228:  }
+       62:  229:  return resultado;
+       62:  230:}
+        -:  231:
+        -:  232:/**
+        -:  233: * @brief Remove pontuações de uma palavra.
+        -:  234: * @param palavra A palavra da qual as pontuações serão removidas.
+        -:  235: * @return A palavra sem pontuações.
+        -:  236: */
+       15:  237:std::string removePontuacao(std::string palavra) {
+       15:  238:  std::string resultado;
+      103:  239:  for (char& letra : palavra) {
+       88:  240:    if (!std::ispunct(letra)) {
+       84:  241:      resultado.push_back(letra);
+        -:  242:    }
+        -:  243:  }
+       15:  244:  return resultado;
+    =====:  245:}
+        -:  246:
+        -:  247:/**
+        -:  248: * @brief Verifica se o texto fornecido está vazio.
+        -:  249: * @param texto O texto a ser verificado.
+        -:  250: * @return true se o texto estiver vazio, false caso contrário.
+        -:  251: */
+        4:  252:bool checaTextoVazio(std::string texto) {
+        4:  253:  if (texto == "") return true;
+        3:  254:  return false;
+        -:  255:}
+        -:  256:
+        -:  257:/**
+        -:  258: * @brief Função principal para contar as palavras em um texto.
+        -:  259: * @param texto O texto a ser analisado.
+        -:  260: * @return Um vetor de pares (palavra, contagem) representando a contagem de palavras no texto.
+        -:  261: */
+        4:  262:std::vector<std::pair<std::string, int>> ContaPalavras(std::string texto) {
+        4:  263:  if (checaTextoVazio(texto)) {
+        1:  264:    return std::vector<std::pair<std::string, int>> ();
+        -:  265:  }
+        3:  266:  HashMap* Contador = build();
+        3:  267:  std::vector<std::string> lista_de_palavras = separaPalavras(texto);
+       14:  268:  for (auto palavra_atual : lista_de_palavras) {
+       11:  269:    int contagem = get(Contador, palavra_atual.c_str());
+       11:  270:    if (contagem == -1) {
+       10:  271:        add(Contador, palavra_atual.c_str(), 1);
+        -:  272:    } else {
+        1:  273:        add(Contador, palavra_atual.c_str(), contagem + 1);
+        -:  274:    }
+       11:  275:  }
+        3:  276:  std::vector<std::pair<std::string, int>> palavrasContadas = processaContagem(Contador, lista_de_palavras);
+        3:  277:  ordenaContagem(palavrasContadas);
+        3:  278:  return palavrasContadas;
+        3:  279:}
