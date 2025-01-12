@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['ordenacontagem_0',['ordenaContagem',['../conta__palavras_8cpp.html#aee53bf1efbf06f9ddc050dcfeb1afc92',1,'conta_palavras.cpp']]]
+  ['separapalavras_0',['separaPalavras',['../conta__palavras_8cpp.html#a8a853da732ff5d6b3376cee320dd93b0',1,'conta_palavras.cpp']]]
 ];

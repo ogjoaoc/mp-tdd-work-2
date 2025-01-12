@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['desalocarhashmap_0',['desalocarHashMap',['../conta__palavras_8cpp.html#a77ef06adbccaee3215d0fa8c01ad0a92',1,'conta_palavras.cpp']]]
+  ['encode_0',['encode',['../conta__palavras_8cpp.html#a2377cb3ef4e19e82bb082197dcb89704',1,'conta_palavras.cpp']]]
 ];

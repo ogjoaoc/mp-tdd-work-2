@@ -1,0 +1,355 @@
+\doxysection{conta\+\_\+palavras.\+cpp File Reference}
+\hypertarget{conta__palavras_8cpp}{}\label{conta__palavras_8cpp}\index{conta\_palavras.cpp@{conta\_palavras.cpp}}
+
+
+Implementação de uma função para contar palavras em um texto.  
+
+
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$sstream$>$}\newline
+{\ttfamily \#include $<$fstream$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$cstdlib$>$}\newline
+{\ttfamily \#include $<$cstring$>$}\newline
+{\ttfamily \#include $<$cctype$>$}\newline
+{\ttfamily \#include $<$utility$>$}\newline
+{\ttfamily \#include "{}conta\+\_\+palavras.\+hpp"{}}\newline
+Include dependency graph for conta\+\_\+palavras.\+cpp\+:
+% FIG 0
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \mbox{\hyperlink{conta__palavras_8cpp_a4800cc4886e7b92484e256175f39c724}{ler\+Arquivo}} (const std\+::string nome\+\_\+arquivo)
+\begin{DoxyCompactList}\small\item\em Lê o conteúdo de um arquivo e retorna uma string. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{conta__palavras_8cpp_aec1e4d55908f5afee8e3d7bb49580995}{comparar\+Pares}} (const std\+::pair$<$ std\+::string, int $>$ \&palavra\+\_\+a, const std\+::pair$<$ std\+::string, int $>$ \&palavra\+\_\+b)
+\begin{DoxyCompactList}\small\item\em Compara duas palavras com base na normalização. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{conta__palavras_8cpp_a4938296e1d621d8f4afd49b3b95b9521}{merge}} (int esquerda, int direita, std\+::vector$<$ std\+::pair$<$ std\+::string, int $>$ $>$ \&palavras\+Contadas)
+\begin{DoxyCompactList}\small\item\em Processo de merge para ordenar palavras contadas. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{conta__palavras_8cpp_aa089206884db0009eb7830de5dff1fe9}{merge\+Sort}} (int esquerda, int direita, std\+::vector$<$ std\+::pair$<$ std\+::string, int $>$ $>$ \&palavras\+Contadas)
+\begin{DoxyCompactList}\small\item\em Ordena o vetor de palavras contadas utilizando o algoritmo Merge\+Sort. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{conta__palavras_8cpp_aee53bf1efbf06f9ddc050dcfeb1afc92}{ordena\+Contagem}} (std\+::vector$<$ std\+::pair$<$ std\+::string, int $>$ $>$ \&palavras\+Contadas)
+\begin{DoxyCompactList}\small\item\em Faz ordenação das palavras contadas utilizando merge\+Sort. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structHashMap}{Hash\+Map}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{conta__palavras_8cpp_aa241cc7af9def3e038cdfcc20280b2e8}{build}} ()
+\begin{DoxyCompactList}\small\item\em Cria e inicializa um novo \doxylink{structHashMap}{Hash\+Map}. \end{DoxyCompactList}\item 
+unsigned \mbox{\hyperlink{conta__palavras_8cpp_a2377cb3ef4e19e82bb082197dcb89704}{encode}} (\mbox{\hyperlink{structHashMap}{Hash\+Map}} \texorpdfstring{$\ast$}{*}hash\+Map, const char \texorpdfstring{$\ast$}{*}chave)
+\begin{DoxyCompactList}\small\item\em Codifica uma chave (palavra) utilizando um algoritmo de hash. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{conta__palavras_8cpp_ae5ca3bc611e4b5991ebbc848f030a796}{get}} (\mbox{\hyperlink{structHashMap}{Hash\+Map}} \texorpdfstring{$\ast$}{*}hash\+Map, const char \texorpdfstring{$\ast$}{*}chave)
+\begin{DoxyCompactList}\small\item\em Busca o valor associado a uma chave no \doxylink{structHashMap}{Hash\+Map}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{conta__palavras_8cpp_a28816d1b8148c0ecba2791158a47658c}{add}} (\mbox{\hyperlink{structHashMap}{Hash\+Map}} \texorpdfstring{$\ast$}{*}hash\+Map, const char \texorpdfstring{$\ast$}{*}chave, int num)
+\begin{DoxyCompactList}\small\item\em Adiciona ou atualiza um par chave-\/valor no \doxylink{structHashMap}{Hash\+Map}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{conta__palavras_8cpp_a77ef06adbccaee3215d0fa8c01ad0a92}{desalocar\+Hash\+Map}} (\mbox{\hyperlink{structHashMap}{Hash\+Map}} \texorpdfstring{$\ast$}{*}hash\+Map)
+\begin{DoxyCompactList}\small\item\em Desaloca memória utilizada por um \doxylink{structHashMap}{Hash\+Map}. \end{DoxyCompactList}\item 
+std\+::vector$<$ std\+::pair$<$ std\+::string, int $>$ $>$ \mbox{\hyperlink{conta__palavras_8cpp_a35b286c67715ea85294fdd8c94055415}{processa\+Contagem}} (\mbox{\hyperlink{structHashMap}{Hash\+Map}} \texorpdfstring{$\ast$}{*}contador, std\+::vector$<$ std\+::string $>$ lista\+\_\+de\+\_\+palavras)
+\begin{DoxyCompactList}\small\item\em Processa as contagens das palavras no \doxylink{structHashMap}{Hash\+Map} e as retorna como um vetor de pares (palavra, contagem). \end{DoxyCompactList}\item 
+std\+::vector$<$ std\+::string $>$ \mbox{\hyperlink{conta__palavras_8cpp_a8a853da732ff5d6b3376cee320dd93b0}{separa\+Palavras}} (std\+::string texto)
+\begin{DoxyCompactList}\small\item\em Separa um texto em palavras, removendo pontuações. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{conta__palavras_8cpp_a896272a118e7bb566ef0bdba00f6ad39}{normalizar\+Palavra}} (std\+::string palavra, bool converter\+\_\+para\+\_\+lowercase)
+\begin{DoxyCompactList}\small\item\em Normaliza uma palavra, convertendo caracteres acentuados para suas versões sem acento e para minúsculas se indicado. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{conta__palavras_8cpp_a2050f7237135c97b31320226019043c7}{remove\+Pontuacao}} (std\+::string palavra)
+\begin{DoxyCompactList}\small\item\em Remove pontuações de uma palavra. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{conta__palavras_8cpp_a15c636c51cfe96b1785692971fd6722d}{checa\+Texto\+Vazio}} (std\+::string texto)
+\begin{DoxyCompactList}\small\item\em Verifica se o texto fornecido está vazio. \end{DoxyCompactList}\item 
+std\+::vector$<$ std\+::pair$<$ std\+::string, int $>$ $>$ \mbox{\hyperlink{conta__palavras_8cpp_a43de83b4cd7fc7c1b00783ea4d2ce534}{Conta\+Palavras}} (std\+::string texto)
+\begin{DoxyCompactList}\small\item\em Função principal para contar as palavras em um texto. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Implementação de uma função para contar palavras em um texto. 
+
+\begin{DoxyAuthor}{Author}
+João Carlos 
+\end{DoxyAuthor}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{conta__palavras_8cpp_a28816d1b8148c0ecba2791158a47658c}\label{conta__palavras_8cpp_a28816d1b8148c0ecba2791158a47658c} 
+\index{conta\_palavras.cpp@{conta\_palavras.cpp}!add@{add}}
+\index{add@{add}!conta\_palavras.cpp@{conta\_palavras.cpp}}
+\doxysubsubsection{\texorpdfstring{add()}{add()}}
+{\footnotesize\ttfamily void add (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structHashMap}{Hash\+Map}} \texorpdfstring{$\ast$}{*}}]{hash\+Map,  }\item[{const char \texorpdfstring{$\ast$}{*}}]{chave,  }\item[{int}]{num }\end{DoxyParamCaption})}
+
+
+
+Adiciona ou atualiza um par chave-\/valor no \doxylink{structHashMap}{Hash\+Map}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em hash\+Map} & Ponteiro para o \doxylink{structHashMap}{Hash\+Map}. \\
+\hline
+{\em chave} & A chave a ser adicionada ou atualizada. \\
+\hline
+{\em num} & O valor a ser associado à chave. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{conta__palavras_8cpp_aa241cc7af9def3e038cdfcc20280b2e8}\label{conta__palavras_8cpp_aa241cc7af9def3e038cdfcc20280b2e8} 
+\index{conta\_palavras.cpp@{conta\_palavras.cpp}!build@{build}}
+\index{build@{build}!conta\_palavras.cpp@{conta\_palavras.cpp}}
+\doxysubsubsection{\texorpdfstring{build()}{build()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structHashMap}{Hash\+Map}} \texorpdfstring{$\ast$}{*} build (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Cria e inicializa um novo \doxylink{structHashMap}{Hash\+Map}. 
+
+\begin{DoxyReturn}{Returns}
+Um ponteiro para o novo \doxylink{structHashMap}{Hash\+Map} alocado. 
+\end{DoxyReturn}
+\Hypertarget{conta__palavras_8cpp_a15c636c51cfe96b1785692971fd6722d}\label{conta__palavras_8cpp_a15c636c51cfe96b1785692971fd6722d} 
+\index{conta\_palavras.cpp@{conta\_palavras.cpp}!checaTextoVazio@{checaTextoVazio}}
+\index{checaTextoVazio@{checaTextoVazio}!conta\_palavras.cpp@{conta\_palavras.cpp}}
+\doxysubsubsection{\texorpdfstring{checaTextoVazio()}{checaTextoVazio()}}
+{\footnotesize\ttfamily bool checa\+Texto\+Vazio (\begin{DoxyParamCaption}\item[{std\+::string}]{texto }\end{DoxyParamCaption})}
+
+
+
+Verifica se o texto fornecido está vazio. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em texto} & O texto a ser verificado. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true se o texto estiver vazio, false caso contrário. 
+\end{DoxyReturn}
+\Hypertarget{conta__palavras_8cpp_aec1e4d55908f5afee8e3d7bb49580995}\label{conta__palavras_8cpp_aec1e4d55908f5afee8e3d7bb49580995} 
+\index{conta\_palavras.cpp@{conta\_palavras.cpp}!compararPares@{compararPares}}
+\index{compararPares@{compararPares}!conta\_palavras.cpp@{conta\_palavras.cpp}}
+\doxysubsubsection{\texorpdfstring{compararPares()}{compararPares()}}
+{\footnotesize\ttfamily bool comparar\+Pares (\begin{DoxyParamCaption}\item[{const std\+::pair$<$ std\+::string, int $>$ \&}]{palavra\+\_\+a,  }\item[{const std\+::pair$<$ std\+::string, int $>$ \&}]{palavra\+\_\+b }\end{DoxyParamCaption})}
+
+
+
+Compara duas palavras com base na normalização. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em palavra\+\_\+a} & Primeira palavra para comparação. \\
+\hline
+{\em palavra\+\_\+b} & Segunda palavra para comparação. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true se a primeira palavra for menor que a segunda após normalização, false caso contrário. 
+\end{DoxyReturn}
+\Hypertarget{conta__palavras_8cpp_a43de83b4cd7fc7c1b00783ea4d2ce534}\label{conta__palavras_8cpp_a43de83b4cd7fc7c1b00783ea4d2ce534} 
+\index{conta\_palavras.cpp@{conta\_palavras.cpp}!ContaPalavras@{ContaPalavras}}
+\index{ContaPalavras@{ContaPalavras}!conta\_palavras.cpp@{conta\_palavras.cpp}}
+\doxysubsubsection{\texorpdfstring{ContaPalavras()}{ContaPalavras()}}
+{\footnotesize\ttfamily std\+::vector$<$ std\+::pair$<$ std\+::string, int $>$ $>$ Conta\+Palavras (\begin{DoxyParamCaption}\item[{std\+::string}]{texto }\end{DoxyParamCaption})}
+
+
+
+Função principal para contar as palavras em um texto. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em texto} & O texto a ser analisado. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Um vetor de pares (palavra, contagem) representando a contagem de palavras no texto. 
+\end{DoxyReturn}
+\Hypertarget{conta__palavras_8cpp_a77ef06adbccaee3215d0fa8c01ad0a92}\label{conta__palavras_8cpp_a77ef06adbccaee3215d0fa8c01ad0a92} 
+\index{conta\_palavras.cpp@{conta\_palavras.cpp}!desalocarHashMap@{desalocarHashMap}}
+\index{desalocarHashMap@{desalocarHashMap}!conta\_palavras.cpp@{conta\_palavras.cpp}}
+\doxysubsubsection{\texorpdfstring{desalocarHashMap()}{desalocarHashMap()}}
+{\footnotesize\ttfamily void desalocar\+Hash\+Map (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structHashMap}{Hash\+Map}} \texorpdfstring{$\ast$}{*}}]{hash\+Map }\end{DoxyParamCaption})}
+
+
+
+Desaloca memória utilizada por um \doxylink{structHashMap}{Hash\+Map}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em contador} & Ponteiro para o \doxylink{structHashMap}{Hash\+Map} contendo as contagens das palavras. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{conta__palavras_8cpp_a2377cb3ef4e19e82bb082197dcb89704}\label{conta__palavras_8cpp_a2377cb3ef4e19e82bb082197dcb89704} 
+\index{conta\_palavras.cpp@{conta\_palavras.cpp}!encode@{encode}}
+\index{encode@{encode}!conta\_palavras.cpp@{conta\_palavras.cpp}}
+\doxysubsubsection{\texorpdfstring{encode()}{encode()}}
+{\footnotesize\ttfamily unsigned encode (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structHashMap}{Hash\+Map}} \texorpdfstring{$\ast$}{*}}]{hash\+Map,  }\item[{const char \texorpdfstring{$\ast$}{*}}]{chave }\end{DoxyParamCaption})}
+
+
+
+Codifica uma chave (palavra) utilizando um algoritmo de hash. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em hash\+Map} & Ponteiro para o \doxylink{structHashMap}{Hash\+Map} onde a chave será armazenada. \\
+\hline
+{\em chave} & A chave (palavra) a ser codificada. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+O código gerado para a chave. 
+\end{DoxyReturn}
+\Hypertarget{conta__palavras_8cpp_ae5ca3bc611e4b5991ebbc848f030a796}\label{conta__palavras_8cpp_ae5ca3bc611e4b5991ebbc848f030a796} 
+\index{conta\_palavras.cpp@{conta\_palavras.cpp}!get@{get}}
+\index{get@{get}!conta\_palavras.cpp@{conta\_palavras.cpp}}
+\doxysubsubsection{\texorpdfstring{get()}{get()}}
+{\footnotesize\ttfamily int get (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structHashMap}{Hash\+Map}} \texorpdfstring{$\ast$}{*}}]{hash\+Map,  }\item[{const char \texorpdfstring{$\ast$}{*}}]{chave }\end{DoxyParamCaption})}
+
+
+
+Busca o valor associado a uma chave no \doxylink{structHashMap}{Hash\+Map}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em hash\+Map} & Ponteiro para o \doxylink{structHashMap}{Hash\+Map}. \\
+\hline
+{\em chave} & A chave a ser buscada. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+O valor associado à chave ou -\/1 se não encontrado. 
+\end{DoxyReturn}
+\Hypertarget{conta__palavras_8cpp_a4800cc4886e7b92484e256175f39c724}\label{conta__palavras_8cpp_a4800cc4886e7b92484e256175f39c724} 
+\index{conta\_palavras.cpp@{conta\_palavras.cpp}!lerArquivo@{lerArquivo}}
+\index{lerArquivo@{lerArquivo}!conta\_palavras.cpp@{conta\_palavras.cpp}}
+\doxysubsubsection{\texorpdfstring{lerArquivo()}{lerArquivo()}}
+{\footnotesize\ttfamily std\+::string ler\+Arquivo (\begin{DoxyParamCaption}\item[{const std\+::string}]{nome\+\_\+arquivo }\end{DoxyParamCaption})}
+
+
+
+Lê o conteúdo de um arquivo e retorna uma string. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em nome\+\_\+arquivo} & O nome do arquivo de input. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+O conteúdo do arquivo como uma string. 
+\end{DoxyReturn}
+\Hypertarget{conta__palavras_8cpp_a4938296e1d621d8f4afd49b3b95b9521}\label{conta__palavras_8cpp_a4938296e1d621d8f4afd49b3b95b9521} 
+\index{conta\_palavras.cpp@{conta\_palavras.cpp}!merge@{merge}}
+\index{merge@{merge}!conta\_palavras.cpp@{conta\_palavras.cpp}}
+\doxysubsubsection{\texorpdfstring{merge()}{merge()}}
+{\footnotesize\ttfamily void merge (\begin{DoxyParamCaption}\item[{int}]{esquerda,  }\item[{int}]{direita,  }\item[{std\+::vector$<$ std\+::pair$<$ std\+::string, int $>$ $>$ \&}]{palavras\+Contadas }\end{DoxyParamCaption})}
+
+
+
+Processo de merge para ordenar palavras contadas. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em esquerda} & Índice da parte esquerda do vetor a ser ordenado. \\
+\hline
+{\em direita} & Índice da parte direita do vetor a ser ordenado. \\
+\hline
+{\em palavras\+Contadas} & Vetor de pares (palavra, contagem) a ser ordenado. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{conta__palavras_8cpp_aa089206884db0009eb7830de5dff1fe9}\label{conta__palavras_8cpp_aa089206884db0009eb7830de5dff1fe9} 
+\index{conta\_palavras.cpp@{conta\_palavras.cpp}!mergeSort@{mergeSort}}
+\index{mergeSort@{mergeSort}!conta\_palavras.cpp@{conta\_palavras.cpp}}
+\doxysubsubsection{\texorpdfstring{mergeSort()}{mergeSort()}}
+{\footnotesize\ttfamily void merge\+Sort (\begin{DoxyParamCaption}\item[{int}]{esquerda,  }\item[{int}]{direita,  }\item[{std\+::vector$<$ std\+::pair$<$ std\+::string, int $>$ $>$ \&}]{palavras\+Contadas }\end{DoxyParamCaption})}
+
+
+
+Ordena o vetor de palavras contadas utilizando o algoritmo Merge\+Sort. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em esquerda} & Índice inicial do vetor a ser ordenado. \\
+\hline
+{\em direita} & Índice final do vetor a ser ordenado. \\
+\hline
+{\em palavras\+Contadas} & Vetor de pares (palavra, contagem) a ser ordenado. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{conta__palavras_8cpp_a896272a118e7bb566ef0bdba00f6ad39}\label{conta__palavras_8cpp_a896272a118e7bb566ef0bdba00f6ad39} 
+\index{conta\_palavras.cpp@{conta\_palavras.cpp}!normalizarPalavra@{normalizarPalavra}}
+\index{normalizarPalavra@{normalizarPalavra}!conta\_palavras.cpp@{conta\_palavras.cpp}}
+\doxysubsubsection{\texorpdfstring{normalizarPalavra()}{normalizarPalavra()}}
+{\footnotesize\ttfamily std\+::string normalizar\+Palavra (\begin{DoxyParamCaption}\item[{std\+::string}]{palavra,  }\item[{bool}]{converter\+\_\+para\+\_\+lowercase }\end{DoxyParamCaption})}
+
+
+
+Normaliza uma palavra, convertendo caracteres acentuados para suas versões sem acento e para minúsculas se indicado. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em palavra} & A palavra a ser normalizada. \\
+\hline
+{\em converter\+\_\+para\+\_\+lowercase} & Indica se a palavra deve ser convertida para minúsculas. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A palavra normalizada. 
+\end{DoxyReturn}
+\Hypertarget{conta__palavras_8cpp_aee53bf1efbf06f9ddc050dcfeb1afc92}\label{conta__palavras_8cpp_aee53bf1efbf06f9ddc050dcfeb1afc92} 
+\index{conta\_palavras.cpp@{conta\_palavras.cpp}!ordenaContagem@{ordenaContagem}}
+\index{ordenaContagem@{ordenaContagem}!conta\_palavras.cpp@{conta\_palavras.cpp}}
+\doxysubsubsection{\texorpdfstring{ordenaContagem()}{ordenaContagem()}}
+{\footnotesize\ttfamily void ordena\+Contagem (\begin{DoxyParamCaption}\item[{std\+::vector$<$ std\+::pair$<$ std\+::string, int $>$ $>$ \&}]{palavras\+Contadas }\end{DoxyParamCaption})}
+
+
+
+Faz ordenação das palavras contadas utilizando merge\+Sort. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em palavras\+Contadas} & Vetor de pares (palavra, contagem) a ser ordenado. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{conta__palavras_8cpp_a35b286c67715ea85294fdd8c94055415}\label{conta__palavras_8cpp_a35b286c67715ea85294fdd8c94055415} 
+\index{conta\_palavras.cpp@{conta\_palavras.cpp}!processaContagem@{processaContagem}}
+\index{processaContagem@{processaContagem}!conta\_palavras.cpp@{conta\_palavras.cpp}}
+\doxysubsubsection{\texorpdfstring{processaContagem()}{processaContagem()}}
+{\footnotesize\ttfamily std\+::vector$<$ std\+::pair$<$ std\+::string, int $>$ $>$ processa\+Contagem (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structHashMap}{Hash\+Map}} \texorpdfstring{$\ast$}{*}}]{contador,  }\item[{std\+::vector$<$ std\+::string $>$}]{lista\+\_\+de\+\_\+palavras }\end{DoxyParamCaption})}
+
+
+
+Processa as contagens das palavras no \doxylink{structHashMap}{Hash\+Map} e as retorna como um vetor de pares (palavra, contagem). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em contador} & Ponteiro para o \doxylink{structHashMap}{Hash\+Map} contendo as contagens das palavras. \\
+\hline
+{\em lista\+\_\+de\+\_\+palavras} & Lista de palavras para comparar com o \doxylink{structHashMap}{Hash\+Map}. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Um vetor de pares (palavra, contagem) das palavras encontradas. 
+\end{DoxyReturn}
+\Hypertarget{conta__palavras_8cpp_a2050f7237135c97b31320226019043c7}\label{conta__palavras_8cpp_a2050f7237135c97b31320226019043c7} 
+\index{conta\_palavras.cpp@{conta\_palavras.cpp}!removePontuacao@{removePontuacao}}
+\index{removePontuacao@{removePontuacao}!conta\_palavras.cpp@{conta\_palavras.cpp}}
+\doxysubsubsection{\texorpdfstring{removePontuacao()}{removePontuacao()}}
+{\footnotesize\ttfamily std\+::string remove\+Pontuacao (\begin{DoxyParamCaption}\item[{std\+::string}]{palavra }\end{DoxyParamCaption})}
+
+
+
+Remove pontuações de uma palavra. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em palavra} & A palavra da qual as pontuações serão removidas. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A palavra sem pontuações. 
+\end{DoxyReturn}
+\Hypertarget{conta__palavras_8cpp_a8a853da732ff5d6b3376cee320dd93b0}\label{conta__palavras_8cpp_a8a853da732ff5d6b3376cee320dd93b0} 
+\index{conta\_palavras.cpp@{conta\_palavras.cpp}!separaPalavras@{separaPalavras}}
+\index{separaPalavras@{separaPalavras}!conta\_palavras.cpp@{conta\_palavras.cpp}}
+\doxysubsubsection{\texorpdfstring{separaPalavras()}{separaPalavras()}}
+{\footnotesize\ttfamily std\+::vector$<$ std\+::string $>$ separa\+Palavras (\begin{DoxyParamCaption}\item[{std\+::string}]{texto }\end{DoxyParamCaption})}
+
+
+
+Separa um texto em palavras, removendo pontuações. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em texto} & O texto de entrada a ser separado em palavras. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Um vetor de palavras extraídas do texto. 
+\end{DoxyReturn}
