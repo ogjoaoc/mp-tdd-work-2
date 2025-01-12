@@ -28,6 +28,7 @@
  */
 
 
+
 HashMap* build() {
   HashMap* hashMap = (HashMap*) malloc(sizeof(HashMap));
   hashMap->capacidade = 1009;  // máximo de palavras
@@ -160,5 +161,6 @@ std::vector<std::pair<std::string, int>> ContaPalavras(std::string texto) {
         add(Contador, palavra_atual.c_str(), contagem + 1);
     }
   }
-  return processaContagem(Contador, lista_de_palavras);
+  std::vector<std::pair<std::string, int>> palavrasContadas = processaContagem(Contador, lista_de_palavras);
+  return palavrasContadas;
 }

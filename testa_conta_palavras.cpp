@@ -83,4 +83,5 @@ TEST_CASE("Teste 8: Texto com pontuação e acentuação (ordem dependente).") {
         {"texto", 2},
         {"utilizado", 1}
     };
+  REQUIRE(resultado == esperado);
 }
