@@ -1,0 +1,35 @@
+\doxysection{conta\+\_\+palavras.\+hpp}
+\hypertarget{conta__palavras_8hpp_source}{}\label{conta__palavras_8hpp_source}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <utility>}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structPar}{Par}}\ \{}
+\DoxyCodeLine{00006\ \ \ \textcolor{keywordtype}{char}*\ chave;}
+\DoxyCodeLine{00007\ \ \ \textcolor{keywordtype}{int}\ valor;}
+\DoxyCodeLine{00008\ \ \ \mbox{\hyperlink{structPar}{Par}}*\ prox;}
+\DoxyCodeLine{00009\ \};}
+\DoxyCodeLine{00010\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structHashMap}{HashMap}}\ \{}
+\DoxyCodeLine{00011\ \ \ \mbox{\hyperlink{structPar}{Par}}**\ lista;}
+\DoxyCodeLine{00012\ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ capacidade;}
+\DoxyCodeLine{00013\ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ tamanho;\ }
+\DoxyCodeLine{00014\ \};}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ std::string\ \mbox{\hyperlink{conta__palavras_8cpp_a4800cc4886e7b92484e256175f39c724}{lerArquivo}}(\textcolor{keyword}{const}\ std::string\ nome\_arquivo);}
+\DoxyCodeLine{00017\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{conta__palavras_8cpp_aec1e4d55908f5afee8e3d7bb49580995}{compararPares}}(\textcolor{keyword}{const}\ std::pair<std::string,\ int>\&\ a,\ \textcolor{keyword}{const}\ std::pair<std::string,\ int>\&\ b);}
+\DoxyCodeLine{00018\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{conta__palavras_8cpp_a4938296e1d621d8f4afd49b3b95b9521}{merge}}(\textcolor{keywordtype}{int}\ esquerda,\ \textcolor{keywordtype}{int}\ direita,\ std::vector<std::pair<std::string,\ int>>\&\ palavrasContadas);}
+\DoxyCodeLine{00019\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{conta__palavras_8cpp_aa089206884db0009eb7830de5dff1fe9}{mergeSort}}(\textcolor{keywordtype}{int}\ esquerda,\ \textcolor{keywordtype}{int}\ direita,\ std::vector<std::pair<std::string,\ int>>\&\ palavrasContadas);}
+\DoxyCodeLine{00020\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{conta__palavras_8cpp_aee53bf1efbf06f9ddc050dcfeb1afc92}{ordenaContagem}}(std::vector<std::pair<std::string,\ int>>\&\ palavrasContadas);}
+\DoxyCodeLine{00021\ \mbox{\hyperlink{structHashMap}{HashMap}}*\ \mbox{\hyperlink{conta__palavras_8cpp_aa241cc7af9def3e038cdfcc20280b2e8}{build}}();}
+\DoxyCodeLine{00022\ \textcolor{keywordtype}{unsigned}\ \mbox{\hyperlink{conta__palavras_8cpp_a2377cb3ef4e19e82bb082197dcb89704}{encode}}(\mbox{\hyperlink{structHashMap}{HashMap}}*\ hashMap,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ chave);}
+\DoxyCodeLine{00023\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{conta__palavras_8cpp_ae5ca3bc611e4b5991ebbc848f030a796}{get}}(\mbox{\hyperlink{structHashMap}{HashMap}}*\ hashMap,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ chave);}
+\DoxyCodeLine{00024\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{conta__palavras_8cpp_a28816d1b8148c0ecba2791158a47658c}{add}}(\mbox{\hyperlink{structHashMap}{HashMap}}*\ hashMap,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ chave,\ \textcolor{keywordtype}{int}\ num);}
+\DoxyCodeLine{00025\ std::vector<std::pair<std::string,int>>\ \mbox{\hyperlink{conta__palavras_8cpp_a35b286c67715ea85294fdd8c94055415}{processaContagem}}(\mbox{\hyperlink{structHashMap}{HashMap}}*\ contador,\ std::vector<std::string>\ lista\_de\_palavras);}
+\DoxyCodeLine{00026\ std::vector<std::string>\ \mbox{\hyperlink{conta__palavras_8cpp_a8a853da732ff5d6b3376cee320dd93b0}{separaPalavras}}(std::string\ texto);}
+\DoxyCodeLine{00027\ std::string\ \mbox{\hyperlink{conta__palavras_8cpp_a896272a118e7bb566ef0bdba00f6ad39}{normalizarPalavra}}(std::string\ palavra,\ \textcolor{keywordtype}{bool}\ converter\_para\_lowercase\ =\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00028\ std::string\ \mbox{\hyperlink{conta__palavras_8cpp_a2050f7237135c97b31320226019043c7}{removePontuacao}}(std::string\ palavra);}
+\DoxyCodeLine{00029\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{conta__palavras_8cpp_a15c636c51cfe96b1785692971fd6722d}{checaTextoVazio}}(std::string\ texto);}
+\DoxyCodeLine{00030\ std::vector<std::pair<std::string,\ int>>\ \mbox{\hyperlink{conta__palavras_8cpp_a43de83b4cd7fc7c1b00783ea4d2ce534}{ContaPalavras}}(std::string\ texto);}
+
+\end{DoxyCode}
