@@ -61,4 +61,12 @@ TEST_CASE("Teste 6: Normalização de palavras (conversão de acentuações).") 
   REQUIRE(resultado == esperado);
 }
 
+TEST_CASE("Teste 7: Texto com pontuação e acentuação (ordem independente).") {
+  std::string texto = "é isso?";
+  auto resultado = ContaPalavras(texto);
+  std::vector<std::pair<std::string, int>> esperado = {
+    {"isso", 1},
+    {"é", 1}
+  };
+}
 
