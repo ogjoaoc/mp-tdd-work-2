@@ -75,6 +75,25 @@ void add(HashMap* hashMap, const char* chave, int num) {
   hashMap->tamanho++;
 }
 
+std::vector<std::pair<std::string,int>> processaContagem(HashMap* contador, std::vector<std::string> lista_de_palavras) {
+  std::vector<std::pair<std::string, int>> palavrasContadas;
+  for (int i = 0; i < (int)contador->capacidade; i++) {
+    Par* atual = contador->lista[i];
+    while (atual) {
+      int contagem = atual->valor;
+      char* chave = atual->chave;
+      for(auto &s : lista_de_palavras) {
+        if(s == chave) {
+          palavrasContadas.push_back({s, contagem});    
+          break;
+        }
+      }
+      atual = atual->prox;
+    }
+  }
+  return palavrasContadas;
+}
+
 std::vector<std::string> separaPalavras(std::string texto) {
   std::istringstream iss(texto);
   std::string palavra;
@@ -94,5 +113,15 @@ std::vector<std::pair<std::string,int>> ContaPalavras(std::string texto) {
   if (checaTextoVazio(texto)) {
     return std::vector<std::pair<std::string,int>> ();
   }
-  return {{"-1", 0}};
+  HashMap* Contador = build();
+  std::vector<std::string> lista_de_palavras = separaPalavras(texto);
+  for (auto palavra_atual : lista_de_palavras) {
+    int contagem = get(Contador, palavra_atual.c_str());
+    if(contagem == -1) {
+        add(Contador, palavra_atual.c_str(), 1);
+    } else {
+        add(Contador, palavra_atual.c_str(), contagem + 1);
+    }
+  }
+  return processaContagem(Contador, lista_de_palavras);
 }
