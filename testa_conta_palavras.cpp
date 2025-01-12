@@ -29,10 +29,15 @@ TEST_CASE("Teste 2: Separação de palavras do texto.") {
   REQUIRE(resultado == esperado);
 }
 
-TEST_CASE("Teste 3: Teste especial para inserção de palavra ao HashMap.") {
+TEST_CASE("Teste 3: Teste especial para inserção de palavra no HashMap.") {
   std::string palavra = "opa";
   HashMap* contador_auxiliar = build();
   add(contador_auxiliar, palavra.c_str(), 1);
   REQUIRE(contador_auxiliar->tamanho == 1);
   REQUIRE(get(contador_auxiliar, palavra.c_str()) == 1);
+}
+
+TEST_CASE("Teste 4: Texto com uma única palavra.") {
+  std::string texto = "palavra";
+  auto resultado = ContaPalavras(texto);
 }
