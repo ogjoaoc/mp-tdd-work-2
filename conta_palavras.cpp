@@ -106,6 +106,11 @@ std::vector<std::string> separaPalavras(std::string texto) {
   return lista_de_palavras;
 }
 
+std::string normalizarPalavra(const std::string& palavra) {
+  std::string resultado = palavra;
+  return resultado;
+}
+
 std::string removePontuacao(std::string palavra) {
   std::string resultado;
   for (char& letra : palavra) {
