@@ -107,7 +107,27 @@ std::vector<std::string> separaPalavras(std::string texto) {
 }
 
 std::string normalizarPalavra(const std::string& palavra) {
+  std::vector<std::pair<std::string, std::string>> mapa_de_substituicoes = {
+    {"á", "a"}, {"à", "a"}, {"â", "a"}, {"ã", "a"}, {"ä", "a"},
+    {"é", "e"}, {"è", "e"}, {"ê", "e"}, {"ë", "e"},
+    {"í", "i"}, {"ì", "i"}, {"î", "i"}, {"ï", "i"},
+    {"ó", "o"}, {"ò", "o"}, {"ô", "o"}, {"õ", "o"}, {"ö", "o"},
+    {"ú", "u"}, {"ù", "u"}, {"û", "u"}, {"ü", "u"},
+    {"ç", "c"}, {"Á", "A"}, {"À", "A"}, {"Â", "A"}, {"Ã", "A"}, {"Ä", "A"},
+    {"É", "E"}, {"È", "E"}, {"Ê", "E"}, {"Ë", "E"},
+    {"Í", "I"}, {"Ì", "I"}, {"Î", "I"}, {"Ï", "I"},
+    {"Ó", "O"}, {"Ò", "O"}, {"Ô", "O"}, {"Õ", "O"}, {"Ö", "O"},
+    {"Ú", "U"}, {"Ù", "U"}, {"Û", "U"}, {"Ü", "U"},
+    {"Ç", "C"}
+  };
   std::string resultado = palavra;
+  for (auto & [letra_acentuada, letra_sem_acento]: mapa_de_substituicoes) {
+    unsigned long long pos = 0;
+    while ((pos = resultado.find(letra_acentuada, pos)) != std::string::npos) {
+      resultado.replace(pos, letra_acentuada.length(), letra_sem_acento);
+      pos += letra_sem_acento.length();
+    }
+  }
   return resultado;
 }
 
