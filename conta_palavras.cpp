@@ -4,6 +4,8 @@
 
 #include <sstream>
 
+#include <fstream>
+
 #include <vector>
 
 #include <cstdlib>
@@ -20,6 +22,23 @@
  * @author João Carlos
  */
 #include "conta_palavras.hpp"
+
+
+/**
+ * @brief Lê o conteúdo de um arquivo e retorna uma string.
+ * @param nome_arquivo O nome do arquivo de input.
+ * @return O conteúdo do arquivo como uma string.
+ */
+std::string lerArquivo(const std::string nome_arquivo) {
+  std::ifstream arquivo("input/" + nome_arquivo);
+  if (!arquivo.is_open()) {  
+    std::cerr << "Erro ao abrir o arquivo: " << nome_arquivo << '\n';
+    return "-1";
+  }
+  std::stringstream buffer;  
+  buffer << arquivo.rdbuf();  
+  return buffer.str();  
+}
 
 /**
  * @brief Compara duas palavras com base na normalização.

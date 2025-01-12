@@ -3,14 +3,18 @@
  */
 
 #include <string>
+
 #include <vector>
+
 #include <iostream>
+
 #include <utility>
 
 #include "conta_palavras.hpp"
 
 #define CATCH_CONFIG_NO_POSIX_SIGNALS
 #define CATCH_CONFIG_MAIN
+
 #include "catch.hpp"
 
 TEST_CASE("Teste 1: Texto vazio.") {
@@ -20,7 +24,7 @@ TEST_CASE("Teste 1: Texto vazio.") {
 }
 
 TEST_CASE("Teste 2: Separação de palavras do texto.") {
-  std::string texto = "devem estar separadas";
+  std::string texto = lerArquivo("in2.txt");
   std::vector<std::string> esperado = {
     {"devem"},
     {"estar"},
@@ -39,28 +43,30 @@ TEST_CASE("Teste 3: Teste especial para inserção de palavra no HashMap.") {
 }
 
 TEST_CASE("Teste 4: Texto com uma única palavra.") {
-  std::string texto = "palavra";
+  std::string texto = lerArquivo("in4.txt");
   auto resultado = ContaPalavras(texto);
-  std::vector<std::pair<std::string, int>> esperado = {{"palavra", 1}};
+  std::vector<std::pair<std::string, int>> esperado = {
+    {"palavra", 1}
+  };
   REQUIRE(resultado == esperado);
 }
 
 TEST_CASE("Teste 5: Remoção de pontuação e caracteres especiais.") {
-  std::string texto = "Sim, aqui tem coisa!";
+  std::string texto = lerArquivo("in5.txt");
   std::string esperado = "Sim aqui tem coisa";
   auto resultado = removePontuacao(texto);
   REQUIRE(resultado == esperado);
 }
 
 TEST_CASE("Teste 6: Normalização de palavras (conversão de acentuações).") {
-  std::string texto = "É a área do triângulo equilátero";
+  std::string texto = lerArquivo("in6.txt");
   std::string esperado = "E a area do triangulo equilatero";
   auto resultado = normalizarPalavra(texto);
   REQUIRE(resultado == esperado);
 }
 
 TEST_CASE("Teste 7: Texto com pontuação e acentuação (ordem independente).") {
-  std::string texto = "é isso?";
+  std::string texto = lerArquivo("in7.txt");
   auto resultado = ContaPalavras(texto);
   std::vector<std::pair<std::string, int>> esperado = {
     {"é", 1},
@@ -70,7 +76,7 @@ TEST_CASE("Teste 7: Texto com pontuação e acentuação (ordem independente).")
 }
 
 TEST_CASE("Teste 8: Texto com pontuação e acentuação (ordem dependente).") {
-  std::string texto = "Este texto é o texto que será utilizado.";
+  std::string texto = lerArquivo("in8.txt");
   auto resultado = ContaPalavras(texto);
   std::vector<std::pair<std::string, int>> esperado = {
     {"é", 1},

@@ -13,6 +13,7 @@ struct HashMap {
   unsigned int tamanho; 
 };
 
+std::string lerArquivo(const std::string nome_arquivo);
 bool compararPares(const std::pair<std::string, int>& a, const std::pair<std::string, int>& b);
 void merge(int esquerda, int direita, std::vector<std::pair<std::string, int>>& palavrasContadas);
 void mergeSort(int esquerda, int direita, std::vector<std::pair<std::string, int>>& palavrasContadas);
