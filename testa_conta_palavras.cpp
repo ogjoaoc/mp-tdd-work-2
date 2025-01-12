@@ -40,4 +40,6 @@ TEST_CASE("Teste 3: Teste especial para inserção de palavra no HashMap.") {
 TEST_CASE("Teste 4: Texto com uma única palavra.") {
   std::string texto = "palavra";
   auto resultado = ContaPalavras(texto);
+  std::vector<std::pair<std::string, int>> esperado = {{"palavra", 1}};
+  REQUIRE(resultado == esperado);
 }
