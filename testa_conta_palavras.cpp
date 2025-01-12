@@ -50,5 +50,7 @@ TEST_CASE("Teste 4: Texto com uma única palavra.") {
 TEST_CASE("Teste 5: Remoção de pontuação e caracteres especiais.") {
   std::string texto = "Sim, aqui tem coisa!";
   std::string esperado = "Sim aqui tem coisa";
+  auto resultado = removePontuacao(texto);
+  REQUIRE(resultado == esperado);
 }
 

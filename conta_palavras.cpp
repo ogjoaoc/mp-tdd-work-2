@@ -106,6 +106,11 @@ std::vector<std::string> separaPalavras(std::string texto) {
   return lista_de_palavras;
 }
 
+std::string removePontuacao(std::string palavra) {
+  std::string resultado;
+  return resultado;
+}
+
 bool checaTextoVazio(std::string texto) {
   if (texto == "") return true;
   return false;
