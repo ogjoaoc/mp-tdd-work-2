@@ -173,6 +173,24 @@ void add(HashMap* hashMap, const char* chave, int num) {
 }
 
 /**
+ * @brief Desaloca memória utilizada por um HashMap.
+ * @param contador Ponteiro para o HashMap contendo as contagens das palavras.
+ */
+void desalocarHashMap(HashMap* hashMap) {
+  for (int i = 0; i < hashMap->capacidade; i++) {
+    Par* atual = hashMap->lista[i];
+    while (atual) {
+      Par* auxiliar = atual;
+      atual = atual->prox;
+      free(auxiliar->chave);
+      free(auxiliar);
+    }
+  }
+  free(hashMap->lista);
+  free(hashMap);
+}
+
+/**
  * @brief Processa as contagens das palavras no HashMap e as retorna como um vetor de pares (palavra, contagem).
  * @param contador Ponteiro para o HashMap contendo as contagens das palavras.
  * @param lista_de_palavras Lista de palavras para comparar com o HashMap.
