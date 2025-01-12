@@ -38,6 +38,8 @@ int \mbox{\hyperlink{conta__palavras_8cpp_ae5ca3bc611e4b5991ebbc848f030a796}{get
 \begin{DoxyCompactList}\small\item\em Busca o valor associado a uma chave no \doxylink{structHashMap}{Hash\+Map}. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{conta__palavras_8cpp_a28816d1b8148c0ecba2791158a47658c}{add}} (\mbox{\hyperlink{structHashMap}{Hash\+Map}} \texorpdfstring{$\ast$}{*}hash\+Map, const char \texorpdfstring{$\ast$}{*}chave, int num)
 \begin{DoxyCompactList}\small\item\em Adiciona ou atualiza um par chave-\/valor no \doxylink{structHashMap}{Hash\+Map}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{conta__palavras_8cpp_a77ef06adbccaee3215d0fa8c01ad0a92}{desalocar\+Hash\+Map}} (\mbox{\hyperlink{structHashMap}{Hash\+Map}} \texorpdfstring{$\ast$}{*}hash\+Map)
+\begin{DoxyCompactList}\small\item\em Desaloca memória utilizada por um \doxylink{structHashMap}{Hash\+Map}. \end{DoxyCompactList}\item 
 std\+::vector$<$ std\+::pair$<$ std\+::string, int $>$ $>$ \mbox{\hyperlink{conta__palavras_8cpp_a35b286c67715ea85294fdd8c94055415}{processa\+Contagem}} (\mbox{\hyperlink{structHashMap}{Hash\+Map}} \texorpdfstring{$\ast$}{*}contador, std\+::vector$<$ std\+::string $>$ lista\+\_\+de\+\_\+palavras)
 \begin{DoxyCompactList}\small\item\em Processa as contagens das palavras no \doxylink{structHashMap}{Hash\+Map} e as retorna como um vetor de pares (palavra, contagem). \end{DoxyCompactList}\item 
 std\+::vector$<$ std\+::string $>$ \mbox{\hyperlink{conta__palavras_8cpp_a8a853da732ff5d6b3376cee320dd93b0}{separa\+Palavras}} (std\+::string texto)
@@ -149,6 +151,21 @@ Função principal para contar as palavras em um texto.
 \begin{DoxyReturn}{Returns}
 Um vetor de pares (palavra, contagem) representando a contagem de palavras no texto. 
 \end{DoxyReturn}
+\Hypertarget{conta__palavras_8cpp_a77ef06adbccaee3215d0fa8c01ad0a92}\label{conta__palavras_8cpp_a77ef06adbccaee3215d0fa8c01ad0a92} 
+\index{conta\_palavras.cpp@{conta\_palavras.cpp}!desalocarHashMap@{desalocarHashMap}}
+\index{desalocarHashMap@{desalocarHashMap}!conta\_palavras.cpp@{conta\_palavras.cpp}}
+\doxysubsubsection{\texorpdfstring{desalocarHashMap()}{desalocarHashMap()}}
+{\footnotesize\ttfamily void desalocar\+Hash\+Map (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structHashMap}{Hash\+Map}} \texorpdfstring{$\ast$}{*}}]{hash\+Map }\end{DoxyParamCaption})}
+
+
+
+Desaloca memória utilizada por um \doxylink{structHashMap}{Hash\+Map}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em contador} & Ponteiro para o \doxylink{structHashMap}{Hash\+Map} contendo as contagens das palavras. \\
+\hline
+\end{DoxyParams}
 \Hypertarget{conta__palavras_8cpp_a2377cb3ef4e19e82bb082197dcb89704}\label{conta__palavras_8cpp_a2377cb3ef4e19e82bb082197dcb89704} 
 \index{conta\_palavras.cpp@{conta\_palavras.cpp}!encode@{encode}}
 \index{encode@{encode}!conta\_palavras.cpp@{conta\_palavras.cpp}}

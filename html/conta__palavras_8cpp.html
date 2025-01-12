@@ -123,6 +123,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a28816d1b8148c0ecba2791158a47658c" id="r_a28816d1b8148c0ecba2791158a47658c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="conta__palavras_8cpp.html#a28816d1b8148c0ecba2791158a47658c">add</a> (<a class="el" href="structHashMap.html">HashMap</a> *hashMap, const char *chave, int num)</td></tr>
 <tr class="memdesc:a28816d1b8148c0ecba2791158a47658c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adiciona ou atualiza um par chave-valor no <a class="el" href="structHashMap.html">HashMap</a>.  <br /></td></tr>
 <tr class="separator:a28816d1b8148c0ecba2791158a47658c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a77ef06adbccaee3215d0fa8c01ad0a92" id="r_a77ef06adbccaee3215d0fa8c01ad0a92"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="conta__palavras_8cpp.html#a77ef06adbccaee3215d0fa8c01ad0a92">desalocarHashMap</a> (<a class="el" href="structHashMap.html">HashMap</a> *hashMap)</td></tr>
+<tr class="memdesc:a77ef06adbccaee3215d0fa8c01ad0a92"><td class="mdescLeft">&#160;</td><td class="mdescRight">Desaloca memória utilizada por um <a class="el" href="structHashMap.html">HashMap</a>.  <br /></td></tr>
+<tr class="separator:a77ef06adbccaee3215d0fa8c01ad0a92"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a35b286c67715ea85294fdd8c94055415" id="r_a35b286c67715ea85294fdd8c94055415"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::pair&lt; std::string, int &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="conta__palavras_8cpp.html#a35b286c67715ea85294fdd8c94055415">processaContagem</a> (<a class="el" href="structHashMap.html">HashMap</a> *contador, std::vector&lt; std::string &gt; lista_de_palavras)</td></tr>
 <tr class="memdesc:a35b286c67715ea85294fdd8c94055415"><td class="mdescLeft">&#160;</td><td class="mdescRight">Processa as contagens das palavras no <a class="el" href="structHashMap.html">HashMap</a> e as retorna como um vetor de pares (palavra, contagem).  <br /></td></tr>
 <tr class="separator:a35b286c67715ea85294fdd8c94055415"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -299,6 +302,32 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Um vetor de pares (palavra, contagem) representando a contagem de palavras no texto. </dd></dl>
+
+</div>
+</div>
+<a id="a77ef06adbccaee3215d0fa8c01ad0a92" name="a77ef06adbccaee3215d0fa8c01ad0a92"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a77ef06adbccaee3215d0fa8c01ad0a92">&#9670;&#160;</a></span>desalocarHashMap()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void desalocarHashMap </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structHashMap.html">HashMap</a> *&#160;</td>
+          <td class="paramname"><em>hashMap</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Desaloca memória utilizada por um <a class="el" href="structHashMap.html">HashMap</a>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">contador</td><td>Ponteiro para o <a class="el" href="structHashMap.html">HashMap</a> contendo as contagens das palavras. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
