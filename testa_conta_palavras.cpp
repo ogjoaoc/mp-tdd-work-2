@@ -54,3 +54,9 @@ TEST_CASE("Teste 5: Remoção de pontuação e caracteres especiais.") {
   REQUIRE(resultado == esperado);
 }
 
+TEST_CASE("Teste 6: Normaliação de palavras (conversão de acentuações).") {
+  std::string texto = "É a área do triângulo equilátero";
+  std::string esperado = "E a area do triangulo equilatero";
+}
+
+
